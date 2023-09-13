@@ -1,0 +1,11 @@
+.SidebarButton {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background-color: #4b2514;
+    color: white;
+    border: none;
+    padding: 20px 15px;
+    cursor: pointer;
+    z-index: 1000;
+}
