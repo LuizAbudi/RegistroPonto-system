@@ -1,10 +1,11 @@
-import logo from './logo.svg';
-import './App.css';
+import Home from "./components/Home/HomePage";
+import Sidebar from "./components/SideBar/Sidebar";
 
 function App() {
   return (
     <div className="App">
-      <h1>Olá Mundo</h1>
+      <Sidebar />
+      <Home />
     </div>
   );
 }
