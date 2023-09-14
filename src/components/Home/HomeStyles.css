@@ -7,7 +7,6 @@ main{
     display: flex; 
     flex-direction: column; 
     min-height: 100vh;
-    font-family: 'Open Sans', sans-serif;
 }
 
 .home-header,
@@ -24,8 +23,7 @@ main{
     justify-content: center;
     align-items: center;
     padding: 20px;
-    background-color: #f5f5dc;
-    /* Cor creme do exemplo anterior */
+    /* background-color: #eeeeca; */
 }
 
 .home-main section{

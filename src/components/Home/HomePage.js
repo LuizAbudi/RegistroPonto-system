@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "../global/global.styles.css";
 import "./HomeStyles.css";
 
 function HomePage() {
