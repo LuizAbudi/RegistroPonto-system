@@ -1,13 +1,38 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "../global/globalStyles.css";
 import "./HomeStyles.css";
+import DataContext from "../../utils/DataContext";
+import { pegarDataHoraAtual } from "../../utils/LogPontoData";
 
 function HomePage() {
   const [time, setTime] = useState(new Date().toLocaleTimeString());
   const [date] = useState(new Date().toLocaleDateString());
-  const [logTimes, setLogTimes] = useState([]);
-  const [logDate, setLogDate] = useState(new Date().toLocaleDateString());
 
+  const { registros, setRegistros } = useContext(DataContext);
+
+  const registrarPonto = () => {
+    const novoPonto = pegarDataHoraAtual();
+
+    // Recuperar o contador atual do localStorage
+    let currentCount = localStorage.getItem("contador");
+
+    // Se o contador não existir, inicialize-o com 1. Se existir, incremente-o.
+    let newCount = currentCount ? parseInt(currentCount) + 1 : 1;
+
+    // Atualize o contador no localStorage
+    localStorage.setItem("contador", newCount.toString());
+
+    // Use o contador como a chave para o novo ponto no localStorage
+    localStorage.setItem(newCount.toString(), JSON.stringify(novoPonto));
+
+    setRegistros((prev) => {
+      return [...prev, novoPonto];
+    });
+  };
+
+  //--------------
+  //Usado para atualizar o relogio a todo tempo
+  //--------------
   useEffect(() => {
     const interval = setInterval(() => {
       setTime(new Date().toLocaleTimeString());
@@ -15,22 +40,6 @@ function HomePage() {
 
     return () => clearInterval(interval); // Limpa o intervalo quando o componente é desmontado
   }, []);
-
-  const showPonto = () => {
-    if (logTimes.length < 8) {
-      setLogTimes((prevTimes) => [
-        ...prevTimes,
-        new Date().toLocaleTimeString(),
-      ]);
-
-      if (logDate[logDate.length - 1] !== new Date().toLocaleDateString()) {
-        setLogDate((prevDates) => [
-          ...prevDates,
-          new Date().toLocaleDateString(),
-        ]);
-      }
-    }
-  };
 
   return (
     <div className="home-container">
@@ -42,14 +51,14 @@ function HomePage() {
           <div className="clock">{time}</div>
           <div className="date">{date} </div>
           <h2>Clique para registrar seu ponto</h2>
-          <button className="btn" onClick={showPonto}>
+          <button className="btn" onClick={registrarPonto}>
             Registrar Ponto
           </button>
         </section>
         <section className="logs">
-          {logTimes.map((logTime, index) => (
+          {registros.map((registro, index) => (
             <div key={index}>
-              Registrado: {logDate[logDate.length - 1] || ""} - {logTime}
+              Data: {registro.data} - Hora: {registro.hora}
             </div>
           ))}
         </section>

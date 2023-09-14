@@ -1,15 +1,17 @@
 import Sidebar from "./components/SideBar/Sidebar";
 import { BrowserRouter as Router } from "react-router-dom";
 import Rotas from "./routes/routes";
-
+import DataContextProvider from "./utils/DataProviderContext";
 
 function App() {
   return (
     <Router>
-      <div className="App">
-        <Sidebar />
-        <Rotas />
-      </div>
+      <DataContextProvider>
+        <div className="App">
+          <Sidebar />
+          <Rotas />
+        </div>
+      </DataContextProvider>
     </Router>
   );
 }
