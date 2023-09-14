@@ -1,12 +1,16 @@
-import Home from "./components/Home/HomePage";
 import Sidebar from "./components/SideBar/Sidebar";
+import { BrowserRouter as Router } from "react-router-dom";
+import Rotas from "./routes/routes";
+
 
 function App() {
   return (
-    <div className="App">
-      <Sidebar />
-      <Home />
-    </div>
+    <Router>
+      <div className="App">
+        <Sidebar />
+        <Rotas />
+      </div>
+    </Router>
   );
 }
 
