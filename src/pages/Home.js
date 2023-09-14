@@ -1,11 +1,12 @@
 import React from "react";
 import HomePage from "../components/Home/HomePage";
+import DataContextProvider from "../utils/DataProviderContext";
 
 function Home() {
   return (
-    <div>
+    <DataContextProvider>
       <HomePage />
-    </div>
+    </DataContextProvider>
   );
 }
 
