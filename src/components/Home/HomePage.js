@@ -14,10 +14,14 @@ function HomePage() {
     const novoPonto = pegarDataHoraAtual();
 
     // Recuperar o contador atual do localStorage
-    let currentCount = localStorage.getItem("contador");
+    let currentCount = localStorage.getItem("contador") || 0;
 
-    // Se o contador não existir, inicialize-o com 1. Se existir, incremente-o.
-    let newCount = currentCount ? parseInt(currentCount) + 1 : 1;
+    if (parseInt(currentCount) >= 8) {
+      alert("Você já registrou 8 pontos. Não é possível registrar mais.");
+      return;
+    }
+    // incrementa a te 8
+    let newCount = parseInt(currentCount) + 1;
 
     // Atualize o contador no localStorage
     localStorage.setItem("contador", newCount.toString());

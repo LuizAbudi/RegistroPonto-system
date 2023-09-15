@@ -1,4 +1,77 @@
-div{
+.registro-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.registro-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.registro-item input[type="time"] {
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.registro-header,
+.registro-footer {
+    padding: 20px;
+    background-color: #f2e1c9;
+    color: black;
     text-align: center;
+}
+
+.registro-main {
+    flex: 1;
+    display: flex;
     justify-content: center;
+    align-items: center;
+    padding: 20px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.registros-table {
+    width: 80%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.registros-table th,
+.registros-table td {
+    border: 1px solid #e0e0e0;
+    padding: 8px 15px;
+    
+}
+
+th#data{
+    text-align: left;
+}
+
+.registros-table th {
+    background-color: #f2e1c9;
+    text-align: center;
+}
+
+.registros-table td input[type="time"] {
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+td#botao, td#hora{
+    text-align: center;
+}
+
+.registros-table tbody tr:nth-child(even) {
+    background-color: #f2e1c9;
+    
+}
+
+.registros-table tbody tr:nth-child(odd) {
+    background-color: #f5f5dc;
 }
