@@ -31,17 +31,18 @@ body {
     justify-content: center;
     align-items: center;
     background-color: #f2e1c9;
-    padding: 20px 40px;
+    padding: 30px 50px;
     border-radius: 5px;
     border: 2px solid #4b2514;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
 }
 
 .form-control {
     background-color: white;
     border: 2px solid #4b2514;
-    padding: 12px 20px;
-    margin: 10px 0;
+    padding: 12px 0px;
+    margin: 10px 20px;
     font-size: 1rem;
     border-radius: 5px;
     width: 100%;
@@ -53,6 +54,7 @@ body {
     border: 2px solid #f5f5dc;
     box-shadow: 0 0 10px #4b2514;
 }
+
 
 .button {
     background-color: #4b2514;
@@ -86,3 +88,22 @@ body {
         height: 150px;
     }
 }
+
+.password-container {
+    position: relative;
+    width: 100%;
+}
+
+.password-input {
+    padding-right: 40px;
+    /* Espaço para o ícone */
+}
+
+.toggle-password-icon {
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
