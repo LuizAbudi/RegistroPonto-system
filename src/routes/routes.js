@@ -16,11 +16,18 @@ const Components = {
   Funcionarios: Funcionarios,
 };
 
-export const PrivateRoute = ({ element }) => {
+export const PrivateRoute = ({ element, path }) => {
   const isAuthenticated = localStorage.getItem("token");
+  const isAdmin = localStorage.getItem("type");
 
   if (!isAuthenticated) {
     return <Navigate to="/" replace />;
+  }
+
+  if (path === "/configuracoes" && isAdmin !== "admin") {
+    alert("Você não tem acesso a essa página, pois você não é um Admin");
+
+    return <Navigate to="/home" replace />;
   }
 
   return element;
@@ -35,7 +42,7 @@ const Rotas = () => {
           <Route
             key={index}
             path={route.link}
-            element={<PrivateRoute element={route.element} />}
+            element={<PrivateRoute element={route.element} path={route.link} />}
             component={Components[route.title]}
           />
         );
