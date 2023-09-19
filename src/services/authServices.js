@@ -1,9 +1,9 @@
 export const Usuarios = [
   {
     username: "teste",
-    senha: "1234",
+    senha: "teste",
     tipo: "admin",
-    token: "0123456789abudi",
+    token: "0123456789teste",
   },
   {
     username: "teste1",
@@ -31,6 +31,6 @@ export function authenticateUser(username, password) {
       tipo: usuario.tipo,
     };
   } else {
-    return null; 
+    return null;
   }
 }
