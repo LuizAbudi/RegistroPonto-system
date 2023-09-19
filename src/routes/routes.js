@@ -1,10 +1,12 @@
-import { Route, Routes } from "react-router-dom";
+import React from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { SidebarData } from "../components/SideBar/SidebarData";
 import Inicio from "../pages/Home";
 import Registro from "../pages/Registro";
 import Relatorio from "../pages/Relatorio";
 import Configuracoes from "../pages/Configuracoes";
 import Funcionarios from "../pages/Funcionarios";
+import Login from "../pages/Login";
 
 const Components = {
   Inicio: Inicio,
@@ -14,18 +16,30 @@ const Components = {
   Funcionarios: Funcionarios,
 };
 
+export const PrivateRoute = ({ element }) => {
+  const isAuthenticated = localStorage.getItem("token");
+
+  if (!isAuthenticated) {
+    return <Navigate to="/" replace />;
+  }
+
+  return element;
+};
+
 const Rotas = () => {
   return (
     <Routes>
-      {SidebarData.map((route, index) => (
-        <Route
-          key={index}
-          path={route.link}
-          exact
-          Component={Components[route.title]}
-          element={route.element}
-        />
-      ))}
+      <Route path="/" element={<Login />} />
+      {SidebarData.map((route, index) => {
+        return (
+          <Route
+            key={index}
+            path={route.link}
+            element={<PrivateRoute element={route.element} />}
+            component={Components[route.title]}
+          />
+        );
+      })}
     </Routes>
   );
 };

@@ -14,31 +14,31 @@ export const SidebarData = [
   {
     title: "Início",
     icon: <HomeIcon />,
-    link: "/",
+    link: "/home",
     element: <Home />,
   },
   {
     title: "Registrar Ponto",
     icon: <AssignmentIcon />,
-    link: "/Registro",
+    link: "/registro",
     element: <Registro />,
   },
   {
     title: "Configurações",
     icon: <SettingsIcon />,
-    link: "/Configuracoes",
+    link: "/configuracoes",
     element: <Configuracoes />,
   },
   {
     title: "Relatórios",
     icon: <DescriptionIcon />,
-    link: "/Relatorio",
+    link: "/relatorio",
     element: <Relatorio />,
   },
   {
     title: "Funcionários",
     icon: <BadgeIcon />,
-    link: "/Funcionarios",
+    link: "/funcionarios",
     element: <Funcionarios />,
   },
 ];

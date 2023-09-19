@@ -1,0 +1,88 @@
+/* LoginPage.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5dc;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-wrap: wrap;
+    /* Isto permite que os elementos filhos se quebrem para a próxima linha se não houver espaço suficiente */
+}
+
+.logo {
+    margin-right: 20px;
+}
+
+.logo-image {
+    max-width: 300px;
+    height: auto;
+}
+
+.login-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f2e1c9;
+    padding: 20px 40px;
+    border-radius: 5px;
+    border: 2px solid #4b2514;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-control {
+    background-color: white;
+    border: 2px solid #4b2514;
+    padding: 12px 20px;
+    margin: 10px 0;
+    font-size: 1rem;
+    border-radius: 5px;
+    width: 100%;
+    outline: none;
+    transition: box-shadow 0.3s ease-in-out, border 0.3s ease-in-out;
+}
+
+.form-control:focus {
+    border: 2px solid #f5f5dc;
+    box-shadow: 0 0 10px #4b2514;
+}
+
+.button {
+    background-color: #4b2514;
+    color: #f2e1c9;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.button:hover {
+    background-color: #f5f5dc;
+    color: #4b2514;
+}
+
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .logo {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+    .logo-image{
+        width: 200px;
+        height: 150px;
+    }
+}

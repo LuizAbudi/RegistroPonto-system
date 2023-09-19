@@ -2,12 +2,19 @@ import React, { useState } from "react";
 import { SidebarData } from "./SidebarData";
 import "./SidebarStyle.css";
 import SidebarButton from "./SidebarButton";
+import LogOut from "@mui/icons-material/Logout";
+import { useNavigate } from "react-router-dom";
 
 function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
+  };
+  const logOut = () => {
+    localStorage.clear();
+    navigate("/");
   };
 
   return (
@@ -30,6 +37,12 @@ function Sidebar() {
               </li>
             );
           })}
+          <li className="row" onClick={logOut}>
+            <div id="icon">
+              <LogOut />
+            </div>
+            <div id="title">Sair</div>
+          </li>
         </ul>
       </div>
     </>
