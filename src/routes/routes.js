@@ -7,7 +7,6 @@ import Relatorio from "../pages/Relatorio";
 import Configuracoes from "../pages/Configuracoes";
 import Funcionarios from "../pages/Funcionarios";
 import Login from "../pages/Login";
-import Home from "../pages/Home";
 
 const Components = {
   Inicio: Inicio,
@@ -24,7 +23,6 @@ export const PrivateRoute = ({ element }) => {
     return <Navigate to="/" replace />;
   }
 
-  console.log(element);
   return element;
 };
 
