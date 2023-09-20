@@ -45,10 +45,9 @@
 .registros-table td {
     border: 1px solid #e0e0e0;
     padding: 8px 15px;
-    
 }
 
-th#data{
+th#data {
     text-align: left;
 }
 
@@ -63,15 +62,54 @@ th#data{
     border-radius: 5px;
 }
 
-td#botao, td#hora{
+td#botao,
+td#hora {
+    text-align: center;
+}
+
+tbody {
     text-align: center;
 }
 
 .registros-table tbody tr:nth-child(even) {
     background-color: #f2e1c9;
-    
 }
 
 .registros-table tbody tr:nth-child(odd) {
     background-color: #f5f5dc;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+    .registro-main {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .registros-table {
+        width: 100%;
+        font-size: 16px;
+    }
+
+    .registros-table th,
+    .registros-table td {
+        padding: 5px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .registros-table {
+        font-size: 14px;
+    }
+
+    .registro-header,
+    .registro-footer {
+        padding: 10px;
+        font-size: 18px;
+    }
+
+    .registro-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }
