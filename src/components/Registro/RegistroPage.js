@@ -9,36 +9,60 @@ function RegistroPage() {
   const [indiceEdicao, setIndiceEdicao] = useState(null);
 
   const showPonto = () => {
-    let contador = localStorage.getItem("contador");
-    let tamPilha = parseInt(contador);
+    let datas = Object.keys(localStorage)
+      .filter((key) => key.includes("/"))
+      .sort((a, b) => {
+        // Convertendo a data de "DD/MM/YYYY" para "YYYY-MM-DD"
+        const convertDate = (dateStr) => {
+          const [day, month, year] = dateStr.split("/");
+          return `${year}-${month}-${day}`;
+        };
+        return Date.parse(convertDate(a)) - Date.parse(convertDate(b));
+      }); // Obter chaves de data
     let pontos = [];
 
-    if (contador === null) {
+    if (datas.length === 0) {
       alert("Não há pontos registrados");
       return;
     }
 
-    for (let i = 1; i <= tamPilha; i++) {
-      let ponto = localStorage.getItem(i.toString());
-      pontos.push(JSON.parse(ponto));
-    }
+    datas.forEach((data) => {
+      let registrosDoDia = JSON.parse(localStorage.getItem(data));
+      pontos.push({ data, registros: registrosDoDia });
+    });
 
     setPontosExibidos(pontos);
     setRegistros(pontos);
   };
 
-  const handleTimeChange = (index, event) => {
+  const handleTimeChange = (index, registroIndex, event) => {
     const updatedPoints = [...pontosExibidos];
-    updatedPoints[index].hora = event.target.value;
+    updatedPoints[index].registros[registroIndex].hora = event.target.value;
     setPontosExibidos(updatedPoints);
+  };
 
-    // Salva a hora editada no localStorage
+  const confirmChange = (index, registroIndex) => {
+    // 1. Pegue a hora original antes de ser editada
+    const horaOriginal = pontosExibidos[index].registros[registroIndex].hora;
+
+    // 2. Salve a nova hora
     localStorage.setItem(
-      (index + 1).toString(),
-      JSON.stringify(updatedPoints[index])
+      pontosExibidos[index].data,
+      JSON.stringify(pontosExibidos[index].registros)
     );
 
-    // Resetar o índice de edição para retornar à visualização de texto
+    // 3. Crie uma notificação com a hora original e a nova hora
+    const notifications = JSON.parse(
+      localStorage.getItem("adminNotifications") || "[]"
+    );
+    notifications.push({
+      date: pontosExibidos[index].data,
+      originalHora: horaOriginal,
+      newHora: pontosExibidos[index].registros[registroIndex].hora,
+    });
+
+    localStorage.setItem("adminNotifications", JSON.stringify(notifications));
+
     setIndiceEdicao(null);
   };
 
@@ -54,8 +78,9 @@ function RegistroPage() {
         <table className="registros-table">
           <thead>
             <tr>
-              <th id="data">Data</th>
-              <th>Hora</th>
+              <th>Data</th>
+              <th>Entrada</th>
+              <th>Saída</th>
               <th>Ação</th>
             </tr>
           </thead>
@@ -63,21 +88,39 @@ function RegistroPage() {
             {pontosExibidos.map((ponto, index) => (
               <tr key={index}>
                 <td>{ponto.data}</td>
-                <td id="hora">
-                  {indiceEdicao === index ? (
-                    <input
-                      type="time"
-                      value={ponto.hora}
-                      onChange={(event) => handleTimeChange(index, event)}
-                    />
-                  ) : (
-                    ponto.hora
-                  )}
-                </td>
-                <td id="botao">
-                  <button onClick={() => setIndiceEdicao(index)}>
-                    Editar Hora
+                {ponto.registros.map((registro, registroIndex) => (
+                  <React.Fragment key={registroIndex}>
+                    <td>
+                      {indiceEdicao === `${index}-${registroIndex}` ? (
+                        <>
+                          <input
+                            type="time"
+                            value={registro.hora}
+                            onChange={(event) =>
+                              handleTimeChange(index, registroIndex, event)
+                            }
+                          />
+                          <button
+                            onClick={() => confirmChange(index, registroIndex)}
+                          >
+                            Confirmar
+                          </button>
+                        </>
+                      ) : (
+                        registro.hora
+                      )}
+                    </td>
+                  </React.Fragment>
+                ))}
+                <td>
+                  <button onClick={() => setIndiceEdicao(`${index}-0`)}>
+                    Editar Entrada
                   </button>
+                  {ponto.registros[1] && (
+                    <button onClick={() => setIndiceEdicao(`${index}-1`)}>
+                      Editar Saída
+                    </button>
+                  )}
                 </td>
               </tr>
             ))}

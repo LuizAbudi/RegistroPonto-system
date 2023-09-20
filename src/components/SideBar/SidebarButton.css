@@ -9,3 +9,15 @@
     cursor: pointer;
     z-index: 1000;
 }
+
+@media (max-width: 768px) {
+    .SidebarButton{
+        padding: 5px 5px;
+    }
+}
+@media (max-width: 480px) {
+    .SidebarButton{
+        padding: 0px 5px;
+    }
+}
+

@@ -1,7 +1,12 @@
 import React from "react";
+import AdminConfigurations from "../components/Configuracoes/adminConfigurations";
 
 function Configuracoes() {
-  return <div>Configuracoes</div>;
+  return (
+    <div>
+      <AdminConfigurations />
+    </div>
+  );
 }
 
 export default Configuracoes;

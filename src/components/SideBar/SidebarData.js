@@ -18,7 +18,7 @@ export const SidebarData = [
     element: <Home />,
   },
   {
-    title: "Registrar Ponto",
+    title: "Registro de Ponto",
     icon: <AssignmentIcon />,
     link: "/registro",
     element: <Registro />,
