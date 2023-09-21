@@ -1,13 +1,22 @@
-import { InjectPontos } from "../../tests/PontoTester";
 import "./adminConfigurations.css";
 import React from "react";
 
 function adminConfigurations() {
   return (
     <div>
-      <button className="btn" onClick={InjectPontos}>
-        Ver Pontos
-      </button>
+      <div className="home-container">
+        <header className="home-header">
+          <h1>Configurações</h1>
+        </header>
+        <main className="home-main">
+          <section>
+            
+          </section>
+        </main>
+        <footer className="home-footer">
+          Bar e Bocha - Todos os direitos reservados.
+        </footer>
+      </div>
     </div>
   );
 }
