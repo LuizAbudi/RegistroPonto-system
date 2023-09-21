@@ -101,6 +101,7 @@ function RegistroPage() {
                             }
                           />
                           <button
+                            className="button-table"
                             onClick={() => confirmChange(index, registroIndex)}
                           >
                             Confirmar
@@ -113,11 +114,17 @@ function RegistroPage() {
                   </React.Fragment>
                 ))}
                 <td>
-                  <button onClick={() => setIndiceEdicao(`${index}-0`)}>
+                  <button
+                    className="button-table"
+                    onClick={() => setIndiceEdicao(`${index}-0`)}
+                  >
                     Editar Entrada
                   </button>
                   {ponto.registros[1] && (
-                    <button onClick={() => setIndiceEdicao(`${index}-1`)}>
+                    <button
+                      className="button-table"
+                      onClick={() => setIndiceEdicao(`${index}-1`)}
+                    >
                       Editar Saída
                     </button>
                   )}
