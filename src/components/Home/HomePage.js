@@ -53,28 +53,30 @@ function HomePage() {
             Registrar Ponto
           </button>
         </section>
-        <section className="logs">
-          {Object.keys(localStorage)
-            .filter((key) => key.includes("/")) // Assumindo que as chaves de data incluem "/"
-            .sort((a, b) => {
-              // Convertendo a data de "DD/MM/YYYY" para "YYYY-MM-DD"
-              const convertDate = (dateStr) => {
-                const [day, month, year] = dateStr.split("/");
-                return `${year}-${month}-${day}`;
-              };
-              return Date.parse(convertDate(a)) - Date.parse(convertDate(b));
-            })
-            .map((data) => {
-              const pontos = JSON.parse(localStorage[data]);
-              return (
-                <div key={data}>
-                  Dia: {data}
-                  <div>Entrada: {pontos[0]?.hora || ""}</div>
-                  <div>Saída: {pontos[1]?.hora || ""}</div>
-                </div>
-              );
-            })}
-        </section>
+        <div className="teste">
+          <div className="logs">
+            {Object.keys(localStorage)
+              .filter((key) => key.includes("/")) // Assumindo que as chaves de data incluem "/"
+              .sort((a, b) => {
+                // Convertendo a data de "DD/MM/YYYY" para "YYYY-MM-DD"
+                const convertDate = (dateStr) => {
+                  const [day, month, year] = dateStr.split("/");
+                  return `${year}-${month}-${day}`;
+                };
+                return Date.parse(convertDate(a)) - Date.parse(convertDate(b));
+              })
+              .map((data) => {
+                const pontos = JSON.parse(localStorage[data]);
+                return (
+                  <div key={data}>
+                    Dia: {data}
+                    <div>Entrada: {pontos[0]?.hora || ""}</div>
+                    <div>Saída: {pontos[1]?.hora || ""}</div>
+                  </div>
+                );
+              })}
+          </div>
+        </div>
       </main>
       <footer className="home-footer">
         Bar e Bocha - Todos os direitos reservados.
