@@ -70,19 +70,41 @@ main{
 .logs {
     margin-top: 20px;
     padding-top: 10px;
-    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: space-between;
     display: flex;
     font-family: 'Open Sans', sans-serif;
     font-size: 16px;
+    margin-left: 50px;
+    flex-wrap: wrap;
+    /* Isso permite que os itens se movam para a próxima linha se não houver espaço suficiente na linha atual */
 }
+
 .logs>div {
     margin-bottom: 10px;
     background-color: #f2e1c9;
     margin: 5px 0;
     padding: 5px;
+    width: 140px;
+    box-sizing: border-box;
+    
 }
 
 .logs>div:nth-child(odd) {
     background-color: #f5f5dc;
+}
+
+.teste{
+    max-width: 900px;;
+}
+
+@media (min-width: 768px) {
+    .logs {
+        flex-direction: row;
+    }
+
+    .logs>div {
+        
+        margin: 10px;
+    }
 }
