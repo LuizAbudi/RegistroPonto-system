@@ -53,7 +53,7 @@ function HomePage() {
             Registrar Ponto
           </button>
         </section>
-        <div className="teste">
+        <div className="container-log">
           <div className="logs">
             {Object.keys(localStorage)
               .filter((key) => key.includes("/")) // Assumindo que as chaves de data incluem "/"
