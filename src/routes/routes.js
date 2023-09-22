@@ -7,6 +7,9 @@ import Relatorio from "../pages/Relatorio";
 import Configuracoes from "../pages/Configuracoes";
 import Funcionarios from "../pages/Funcionarios";
 import Login from "../pages/Login";
+import RelatorioPresenca from "../pages/RelatorioPresenca";
+import RelatorioPagamento from "../pages/RelatorioPagamento";
+import CadastroFuncionario from "../pages/CadastroFuncionario";
 
 const Components = {
   Inicio: Inicio,
@@ -47,6 +50,18 @@ const Rotas = () => {
           />
         );
       })}
+      <Route
+        path="/configuracoes/relatorioPresenca"
+        element={<RelatorioPresenca />}
+      />
+      <Route
+        path="/configuracoes/relatorioPagamento"
+        element={<RelatorioPagamento />}
+      />
+      <Route
+        path="/configuracoes/relatorioCadastroNovoFuncionario"
+        element={<CadastroFuncionario />}
+      />
     </Routes>
   );
 };
