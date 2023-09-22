@@ -1,7 +1,23 @@
-import "./adminConfigurations.css";
 import React from "react";
+import "./adminConfigurations.css";
+import { useNavigate } from "react-router-dom";
 
-function adminConfigurations() {
+const AdminConfigurations = () => {
+  const navigate = useNavigate();
+
+  const relatorioPresenca = () => {
+    navigate("/configuracoes/relatorioPresenca");
+  };
+  const relatorioPagamento = () => {
+    navigate("/configuracoes/relatorioPagamento");
+  };
+  const mudarValor = () => {
+    navigate("/configuracoes/relatorioMudaValor");
+  };
+  const novoCadastro = () => {
+    navigate("/configuracoes/relatorioCadastroNovoFuncionario");
+  };
+
   return (
     <div>
       <div className="home-container">
@@ -10,16 +26,16 @@ function adminConfigurations() {
         </header>
         <main className="home-main">
           <div className="botoes">
-            <button className="button-config" /*onClick={}*/>
+            <button className="button-config" onClick={relatorioPresenca}>
               Gerar Relatório Presença
             </button>
-            <button className="button-config" /*onClick={}*/>
+            <button className="button-config" onClick={relatorioPagamento}>
               Gerar Relatório Pagamento
             </button>
-            <button className="button-config" /*onClick={}*/>
+            <button className="button-config" onClick={mudarValor}>
               Mudar valor de pagamento
             </button>
-            <button className="button-config" /*onClick={}*/>
+            <button className="button-config" onClick={novoCadastro}>
               Cadastrar novo funcionário
             </button>
           </div>
@@ -30,6 +46,6 @@ function adminConfigurations() {
       </div>
     </div>
   );
-}
+};
 
-export default adminConfigurations;
+export default AdminConfigurations;
