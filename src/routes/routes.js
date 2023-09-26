@@ -10,6 +10,7 @@ import Login from "../pages/Login";
 import RelatorioPresenca from "../pages/RelatorioPresenca";
 import RelatorioPagamento from "../pages/RelatorioPagamento";
 import CadastroFuncionario from "../pages/CadastroFuncionario";
+import MudarValorPagamento from "../pages/MudarValorPagamento";
 
 const Components = {
   Inicio: Inicio,
@@ -61,6 +62,10 @@ const Rotas = () => {
       <Route
         path="/configuracoes/relatorioCadastroNovoFuncionario"
         element={<CadastroFuncionario />}
+      />
+      <Route
+        path="/configuracoes/relatorioMudaValor"
+        element={<MudarValorPagamento />}
       />
     </Routes>
   );
