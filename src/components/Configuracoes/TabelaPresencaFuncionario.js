@@ -25,22 +25,14 @@ function TabelaPresencaFuncionario() {
   }
 
   function getDadosPorFuncionario() {
-    // Recupere os registros do localStorage
     const registros = JSON.parse(localStorage.getItem("Funcionário") || "[]");
-
-    // Crie um objeto para armazenar os dados por funcionário
     const dadosPorFuncionario = {};
 
-    // Processe cada registro
     registros.forEach((registro) => {
       const { funcionario, data, entrada, saida } = registro;
-
-      // Se o funcionário não existir no objeto, inicialize uma lista vazia
       if (!dadosPorFuncionario[funcionario]) {
         dadosPorFuncionario[funcionario] = [];
       }
-
-      // Adicione o registro à lista do funcionário
       dadosPorFuncionario[funcionario].push({ data, entrada, saida });
     });
 
@@ -49,12 +41,11 @@ function TabelaPresencaFuncionario() {
 
   const TodosOsRegistros = getDadosPorFuncionario();
   const [nomeFuncionario, setNomeFuncionario] = useState("");
-
   const [showConfirmButton, setShowConfirmButton] = useState(false);
 
   const onConfirmClick = () => {
     CriaCSV();
-    setShowConfirmButton(false); // Esconda o botão de confirmação após o download
+    setShowConfirmButton(false);
   };
 
   const TemCerteza = () => {
@@ -72,8 +63,11 @@ function TabelaPresencaFuncionario() {
         <Select
           id="funcionario-select"
           value={nomeFuncionario}
-          onChange={(e) => setNomeFuncionario(e.target.value)}
+          onChange={(e) => {
+            setNomeFuncionario(e.target.value);
+          }}
         >
+          <MenuItem value="Todos">Todos</MenuItem>
           {Object.keys(TodosOsRegistros).map((funcNome) => (
             <MenuItem key={funcNome} value={funcNome}>
               {funcNome}
@@ -92,16 +86,29 @@ function TabelaPresencaFuncionario() {
           </tr>
         </thead>
         <tbody>
-          {TodosOsRegistros[nomeFuncionario]?.map((registro, index) => (
-            <tr key={index}>
-              <td>{nomeFuncionario}</td>
-              <td>{registro.data}</td>
-              <td>{registro.entrada}</td>
-              <td>{registro.saida}</td>
-            </tr>
-          ))}
+          {nomeFuncionario === "Todos"
+            ? Object.entries(TodosOsRegistros).flatMap(
+                ([funcNome, registros], idx) =>
+                  registros.map((registro, index) => (
+                    <tr key={`${funcNome}-${index}`}>
+                      <td>{funcNome}</td>
+                      <td>{registro.data}</td>
+                      <td>{registro.entrada}</td>
+                      <td>{registro.saida}</td>
+                    </tr>
+                  ))
+              )
+            : TodosOsRegistros[nomeFuncionario]?.map((registro, index) => (
+                <tr key={index}>
+                  <td>{nomeFuncionario}</td>
+                  <td>{registro.data}</td>
+                  <td>{registro.entrada}</td>
+                  <td>{registro.saida}</td>
+                </tr>
+              ))}
         </tbody>
       </table>
+
       {showConfirmButton ? (
         <Button
           fullWidth
