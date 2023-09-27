@@ -59,7 +59,7 @@ function TabelaPresencaFuncionario() {
   return (
     <div>
       <FormControl variant="filled" sx={{ width: "100%", marginBottom: 2 }}>
-        <InputLabel htmlFor="funcionario-select">Funcionario</InputLabel>
+        <InputLabel htmlFor="funcionario-select">Funcionário</InputLabel>
         <Select
           id="funcionario-select"
           value={nomeFuncionario}
