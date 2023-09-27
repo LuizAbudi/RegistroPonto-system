@@ -1,6 +1,7 @@
 import React from "react";
 import "./adminConfigurations.css";
 import { useNavigate } from "react-router-dom";
+import PontoTester from "../../tests/PontoTester";
 
 const AdminConfigurations = () => {
   const navigate = useNavigate();
@@ -37,6 +38,9 @@ const AdminConfigurations = () => {
             </button>
             <button className="button-config" onClick={novoCadastro}>
               Cadastrar novo funcionário
+            </button>
+            <button className="button-config" onClick={PontoTester}>
+              Relatorio
             </button>
           </div>
         </main>
