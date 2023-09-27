@@ -1,10 +1,16 @@
 import React, { useState } from "react";
-import "./LoginPage.css";
-import imagem from "./img/Logo-preto.png";
-import { authenticateUser } from "../../services/authServices";
-import { useNavigate } from "react-router-dom";
+import {
+  Button,
+  Container,
+  TextField,
+  InputAdornment,
+  IconButton,
+} from "@mui/material";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { authenticateUser } from "../../services/authServices";
+import { useNavigate } from "react-router-dom";
+import imagem from "./img/Logo-preto.png";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -28,44 +34,71 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="container">
-      <div className="logo">
-        <img src={imagem} alt="Logo" className="logo-image" />
+    <Container component="main" maxWidth="xs">
+      <div
+        style={{
+          textAlign: "center",
+          marginBottom: "20px",
+          marginTop: "20%",
+        }}
+      >
+        <img src={imagem} alt="Logo" style={{ width: "80%", height: "80%" }} />
       </div>
-      <form>
-        <div className="login-box">
-          <div>
-            <input
-              type="text"
-              className="form-control"
-              placeholder=" Digite seu Usuário"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-          </div>
-          <div className="password-container">
-            <input
-              type={showPassword ? "text" : "password"}
-              className="form-control"
-              placeholder=" Digite sua Senha"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-
-            <span
-              className="toggle-password-icon"
-              onClick={() => setShowPassword(!showPassword)}
-            >
-              {showPassword ? <VisibilityOff /> : <Visibility />}
-            </span>
-          </div>
-
-          <button type="submit" className="button" onClick={handleSubmit}>
-            Entrar
-          </button>
-        </div>
+      <form onSubmit={handleSubmit}>
+        <TextField
+          variant="outlined"
+          margin="normal"
+          fullWidth
+          id="username"
+          label="Usuário"
+          name="username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <TextField
+          variant="outlined"
+          margin="normal"
+          fullWidth
+          name="password"
+          label="Senha"
+          type={showPassword ? "text" : "password"}
+          id="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton onClick={() => setShowPassword(!showPassword)}>
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
+        />
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          color="primary"
+          style={{
+            backgroundColor: "#4b2514",
+            color: "#f2e1c9",
+            padding: "10px 20px",
+            marginTop: "20px",
+            fontSize: "1rem",
+            borderRadius: "5px",
+            cursor: "pointer",
+            transition: "background-color 0.3s ease-in-out",
+            "&:hover": {
+              backgroundColor: "#f5f5dc",
+              color: "#4b2514",
+            },
+          }}
+        >
+          Entrar
+        </Button>
       </form>
-    </div>
+    </Container>
   );
 };
 
