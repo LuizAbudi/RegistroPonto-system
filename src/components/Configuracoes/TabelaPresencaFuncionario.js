@@ -123,7 +123,7 @@ function TabelaPresencaFuncionario() {
           }}
           onClick={onConfirmClick}
         >
-          Tem certeza?
+          Clique para confirmar
         </Button>
       ) : (
         <Button
