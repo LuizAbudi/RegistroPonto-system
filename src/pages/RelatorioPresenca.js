@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import TabelaPresencaFuncionario from "../components/Configuracoes/TabelaPresencaFuncionario";
 
 function RelatorioPresenca() {
   const navigate = useNavigate();
@@ -19,7 +20,10 @@ function RelatorioPresenca() {
             Voltar
           </button>
         </div>
-        <main className="home-main">slaaa</main>
+        <main className="home-main">
+          
+          <TabelaPresencaFuncionario />
+        </main>
         <footer className="home-footer">
           Bar e Bocha - Todos os direitos reservados.
         </footer>
