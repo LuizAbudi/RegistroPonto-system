@@ -6,7 +6,7 @@ import {
   Select,
 } from "@mui/material";
 import React, { useState } from "react";
-import { downloadCsv, downloadPdf } from "../../utils/PdfCsvDownloader";
+import { downloadCsv } from "../../utils/PdfCsvDownloader";
 
 function TabelaPresencaFuncionario() {
   function CriaCSV() {
