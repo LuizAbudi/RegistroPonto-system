@@ -75,7 +75,6 @@ function TabelaPagamentoFuncionario() {
         const diferencaEmHoras = diferencaEmMinutos / 60;
 
         const valor = diferencaEmHoras * valorPagamento;
-
         registro.valor = valor.toLocaleString("pt-BR", {
           style: "currency",
           currency: "BRL",
