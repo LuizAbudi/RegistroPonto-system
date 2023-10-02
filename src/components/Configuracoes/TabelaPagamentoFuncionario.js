@@ -65,7 +65,7 @@ function TabelaPagamentoFuncionario() {
     Object.keys(dadosPorFuncionario).forEach((funcionario) => {
       const registros = dadosPorFuncionario[funcionario];
       registros.forEach((registro) => {
-        const { data, entrada, saida } = registro;
+        const { entrada, saida } = registro;
         const [entradaHora, entradaMinuto] = entrada.split(":");
         const [saidaHora, saidaMinuto] = saida.split(":");
         const entradaEmMinutos =
@@ -75,7 +75,6 @@ function TabelaPagamentoFuncionario() {
         const diferencaEmHoras = diferencaEmMinutos / 60;
 
         const valor = diferencaEmHoras * valorPagamento;
-        
         registro.valor = valor.toLocaleString("pt-BR", {
           style: "currency",
           currency: "BRL",

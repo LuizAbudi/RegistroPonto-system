@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import CadastrarNovoFuncionario from "../components/Configuracoes/CadastrarNovoFuncionario";
 
 function CadastroFuncionario() {
   const navigate = useNavigate();
@@ -19,7 +20,9 @@ function CadastroFuncionario() {
             Voltar
           </button>
         </div>
-        <main className="home-main">slaaa</main>
+        <main className="home-main">
+          <CadastrarNovoFuncionario />
+        </main>
         <footer className="home-footer">
           Bar e Bocha - Todos os direitos reservados.
         </footer>
