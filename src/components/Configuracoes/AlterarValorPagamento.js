@@ -31,7 +31,10 @@ const funcionario = [
 ];
 
 function AlterarValorPagamento() {
-  const [valorAtual, setValorAtual] = useState("10");
+  const [valorAtual, setValorAtual] = useState(
+    localStorage.getItem("ValorPagamento") ||
+      localStorage.setItem("ValorPagamento", "10")
+  );
   const [novoValor, setNovoValor] = useState("");
   const [selectedFuncionario, setSelectedFuncionario] = useState("");
 
@@ -46,6 +49,7 @@ function AlterarValorPagamento() {
       return;
     }
     setValorAtual(novoValor);
+    localStorage.setItem("ValorPagamento", novoValor);
     setNovoValor("");
   };
 
