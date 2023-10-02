@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import TabelaPagamentoFuncionario from "../components/Configuracoes/TabelaPagamentoFuncionario";
 
 function RelatorioPagamento() {
   const navigate = useNavigate();
@@ -19,7 +20,9 @@ function RelatorioPagamento() {
             Voltar
           </button>
         </div>
-        <main className="home-main">slaa</main>
+        <main className="home-main">
+          <TabelaPagamentoFuncionario />
+        </main>
         <footer className="home-footer">
           Bar e Bocha - Todos os direitos reservados.
         </footer>
