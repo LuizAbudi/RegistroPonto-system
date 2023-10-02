@@ -60,10 +60,12 @@ function TabelaPagamentoFuncionario() {
   function CalcularValor() {
     const dadosPorFuncionario = getDadosPorFuncionario();
 
+    const valorPagamento = localStorage.getItem("ValorPagamento") || "10";
+
     Object.keys(dadosPorFuncionario).forEach((funcionario) => {
       const registros = dadosPorFuncionario[funcionario];
       registros.forEach((registro) => {
-        const { data, entrada, saida } = registro;
+        const { entrada, saida } = registro;
         const [entradaHora, entradaMinuto] = entrada.split(":");
         const [saidaHora, saidaMinuto] = saida.split(":");
         const entradaEmMinutos =
@@ -71,7 +73,9 @@ function TabelaPagamentoFuncionario() {
         const saidaEmMinutos = parseInt(saidaHora) * 60 + parseInt(saidaMinuto);
         const diferencaEmMinutos = saidaEmMinutos - entradaEmMinutos;
         const diferencaEmHoras = diferencaEmMinutos / 60;
-        const valor = diferencaEmHoras * 10;
+
+        const valor = diferencaEmHoras * valorPagamento;
+
         registro.valor = valor.toLocaleString("pt-BR", {
           style: "currency",
           currency: "BRL",
